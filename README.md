@@ -156,6 +156,7 @@ It keeps Caddy and other services intact, retains the previous image for rollbac
 and verifies both the Docker and Caddy health endpoints. If the old image tag was
 pruned while its container is still running, a container snapshot preserves rollback.
 
-For submission, provide the live dashboard URL and this code repository's URL.
+For submission, provide the live dashboard at https://task4.evgeniy.win and the
+source repository at https://github.com/e7ol7e/itransition-task4.
 The original input archive is intentionally excluded from Git; extract the supplied
 assignment archive into `data/` to reproduce the full analysis.
