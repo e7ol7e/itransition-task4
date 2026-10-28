@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+output/
+data/
+data.zip
+deploy.tar.gz
+*.env
+.env*
+!.env.example
+submission/
+*.ipynb
+teaching-reading.md
