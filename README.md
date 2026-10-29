@@ -130,7 +130,7 @@ records are changed. Example commands:
 
 - "How many real unique customers are in Store 3?"
 - "Which genre earned the most revenue in Store 2 in 2025?"
-- "List all aliases and spending for user 48403 in Store 1."
+- "List all aliases and spending for a selected user in Store 1."
 - "Show customers whose emails start with s or p."
 - "Switch to Store 5 and show the last 30 days."
 - "Filter out books whose titles contain people's names."
@@ -160,3 +160,43 @@ For submission, provide the live dashboard at https://task4.evgeniy.win and the
 source repository at https://github.com/e7ol7e/itransition-task4.
 The original input archive is intentionally excluded from Git; extract the supplied
 assignment archive into `data/` to reproduce the full analysis.
+
+
+## Inspectable evidence
+
+Every overview metric has an **Explain this number** button. Revenue dates, winning buyers, author sets, customer IDs, and verified chat answers also open the evidence inspector.
+
+- **Identity groups:** matching records versus real people; searchable, paginated alias groups, including a switch to show singletons.
+- **Identity graph:** a minimal spanning set of links saved by reconciliation. Choose a numbered link to compare normalized records: green fields match, amber fields differ, unknown fields never count as evidence. Chains may connect endpoints that do not directly match three fields. This implements the assignment's one-field-change assumption, not general identity verification.
+- **Purchases:** every alias contributes to the buyer total. Scoped and lifetime spending are labeled separately.
+- **Revenue and copies:** paginated original orders with quantity, original price, FX rate, unrounded USD result, and line total. Summary totals cover every matching order, not only the visible page.
+- **Author sets:** catalog title counts and quantity-weighted sales, including unsold sets in catalog counts.
+- **Chat:** inspect the exact interpreted filters/grouping/aggregation and recompute the underlying query. Only selected final tool results appear as answers or dashboard actions; intermediate computations remain in the API trace.
+
+Cards and audit evidence share `StoreTools.scope`, so active filters have one interpretation. Evidence downloads contain the request and current result page with explicit totals/pagination; they do not claim to export the whole dataset. The inspector uses `/api/audit`; no additional model call is needed to explain a number. Generated asset URLs include content versions, and HTML is revalidated so CDN caches cannot mix frontend releases.
+
+## AI interpretation evaluation
+
+`evaluate_assistant.py` contains 30 ground-truth cases. They distinguish directory records from real people, order counts from sold copies, positive from negative text filters, OR prefixes, filtered from whole-store questions, clear-filter commands, and lifetime spending across aliases. Five-store cases also verify the selected store.
+
+The evaluator checks tool intent and actual matching record IDs, as well as computed results. A wrong filter that happens to produce the right count cannot pass. Expected answers come from deterministic pandas calculations; an AI model is never used to grade itself. Provider failures count as failures, not skipped cases. A passing run is evidence for these cases, not a guarantee about every possible question.
+
+Run with the configured API key on the VPS:
+
+```sh
+cd /root/itransition
+docker compose exec -T task4 /app/.venv/bin/python evaluate_assistant.py --live --output /tmp/assistant-evaluation.json
+# Preserve the report outside the container tmpfs:
+mkdir -p task4/evaluation
+docker compose exec -T task4 cat /tmp/assistant-evaluation.json > task4/evaluation/assistant-results.json
+```
+
+The default report contains case labels, pass/fail, tool names and timings; it omits prompts and data-specific results. See `evaluation/assistant-results.json` for the measured run. For private debugging, add `--private-details` and save the output outside public source (for example under ignored `submission/`). Never publish credentials. Detailed diagnostics are excluded from the published history.
+
+The ordinary offline suite also tests transitive identity chains, missing evidence, scoped totals, pagination, negative filters, rejected final-result references, and discarding intermediate dashboard actions:
+
+```sh
+uv run python -m unittest discover -s . -p "test_*.py" -v
+```
+
+`browser_checks.py` is an optional live UI check requiring Playwright and installed Chrome. Its provider reply is stubbed to exercise the chat inspector without API spending; evidence requests still hit the real backend. Live model behavior is tested separately by the evaluator above.

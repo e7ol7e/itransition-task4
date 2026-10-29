@@ -1,0 +1,280 @@
+{
+  "model": "deepseek-v4-flash",
+  "measured_at": "2026-10-29T08:24:18.408677+00:00",
+  "passed": 30,
+  "total": 30,
+  "planned": 30,
+  "detail_policy": "Public verification omits prompts and data-specific results. Detailed diagnostics stay private.",
+  "cases": [
+    {
+      "id": "aliases",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "get_user_aliases"
+      ],
+      "seconds": 2.26
+    },
+    {
+      "id": "clear-filters",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "update_dashboard"
+      ],
+      "seconds": 2.68
+    },
+    {
+      "id": "contains",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.57
+    },
+    {
+      "id": "filtered-orders",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.29
+    },
+    {
+      "id": "hide_prefix",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "update_dashboard"
+      ],
+      "seconds": 2.29
+    },
+    {
+      "id": "negative",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.29
+    },
+    {
+      "id": "not_contains",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.78
+    },
+    {
+      "id": "prefix",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.43
+    },
+    {
+      "id": "show_prefix",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "update_dashboard"
+      ],
+      "seconds": 2.64
+    },
+    {
+      "id": "store1-copies",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.6
+    },
+    {
+      "id": "store1-orders",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.24
+    },
+    {
+      "id": "store1-people",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.83
+    },
+    {
+      "id": "store1-records",
+      "store": "STORE1",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.25
+    },
+    {
+      "id": "store2-copies",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.6
+    },
+    {
+      "id": "store2-orders",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.02
+    },
+    {
+      "id": "store2-people",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.11
+    },
+    {
+      "id": "store2-records",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.54
+    },
+    {
+      "id": "store3-copies",
+      "store": "STORE3",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.41
+    },
+    {
+      "id": "store3-orders",
+      "store": "STORE3",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.11
+    },
+    {
+      "id": "store3-people",
+      "store": "STORE3",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.34
+    },
+    {
+      "id": "store3-records",
+      "store": "STORE3",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 1.78
+    },
+    {
+      "id": "store4-copies",
+      "store": "STORE4",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.31
+    },
+    {
+      "id": "store4-orders",
+      "store": "STORE4",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.13
+    },
+    {
+      "id": "store4-people",
+      "store": "STORE4",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 1.91
+    },
+    {
+      "id": "store4-records",
+      "store": "STORE4",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 1.92
+    },
+    {
+      "id": "store5-copies",
+      "store": "STORE5",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.41
+    },
+    {
+      "id": "store5-orders",
+      "store": "STORE5",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.42
+    },
+    {
+      "id": "store5-people",
+      "store": "STORE5",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.43
+    },
+    {
+      "id": "store5-records",
+      "store": "STORE5",
+      "passed": true,
+      "tools": [
+        "query_data"
+      ],
+      "seconds": 2.52
+    },
+    {
+      "id": "whole-store-despite-filter",
+      "store": "STORE2",
+      "passed": true,
+      "tools": [
+        "get_store_summary"
+      ],
+      "seconds": 2.35
+    }
+  ]
+}

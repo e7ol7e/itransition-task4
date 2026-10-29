@@ -15,6 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import Field
 
 from assistant import Analyst
+from audit import AuditRequest, explain
 from data_tools import DashboardState, Query, StoreTools, StrictModel, records
 
 ROOT = Path(__file__).resolve().parent
@@ -51,6 +52,8 @@ async def headers(request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     if request.url.path.startswith("/api"):
         response.headers["Cache-Control"] = "no-store"
+    elif request.url.path in {'/','/task4/'}:
+        response.headers['Cache-Control']='no-cache'
     return response
 
 
@@ -116,6 +119,14 @@ def dashboard(state: DashboardState):
         return result
     except (ValueError, TypeError) as error:
         raise HTTPException(422, str(error)) from error
+
+
+@app.post('/api/audit')
+def audit(payload: AuditRequest):
+    try:
+        return explain(app.state.data,payload)
+    except (ValueError,TypeError) as error:
+        raise HTTPException(422,str(error)) from error
 
 
 @app.get("/api/schema/{store}")

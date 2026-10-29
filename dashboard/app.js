@@ -51,7 +51,7 @@ async function refreshDashboard(){
     const wrap=element('div','table-scroll'),table=element('table','record-table'),head=element('thead'),tr=element('tr');
     const columns=Object.keys(result.table.rows[0]).filter(k=>!k.endsWith('_usd'));
     for(const key of columns)tr.append(element('th','',key.replaceAll('_',' ')));head.append(tr);table.append(head);
-    const body=element('tbody');for(const row of result.table.rows){const r=element('tr');for(const key of columns)r.append(element('td','',row[key]===null?'Unknown':key.endsWith('_cents')?money(row[key]):Array.isArray(row[key])?row[key].join(', '):String(row[key])));body.append(r)}
+    const body=element('tbody');for(const row of result.table.rows){const r=element('tr');for(const key of columns){const td=element('td','',row[key]===null?'Unknown':key.endsWith('_cents')?money(row[key]):Array.isArray(row[key])?row[key].join(', '):String(row[key]));if(key==='id'&&dashboardState.view==='users'){const button=element('button','audit-trigger',String(row[key])+' \u2197');button.type='button';button.dataset.proof='person';button.dataset.userId=row[key];td.replaceChildren(button)}r.append(td)}body.append(r)}
     table.append(body);wrap.append(table);recordSection.append(wrap);
    }
   }
@@ -83,7 +83,7 @@ document.getElementById('chat-form').onsubmit=async e=>{
  try{
   const result=await api('chat',{message:text,state:dashboardState,history:chatHistory.slice(-10)});pending.remove();
   for(const state of result.actions)await applyState(state);
-  addMessage('assistant',result.answer,result.evidence);chatHistory.push({role:'user',content:text},{role:'assistant',content:result.answer.slice(0,6000)});
+  const message=addMessage('assistant',result.answer,result.evidence);window.addEvidenceButtons?.(message,result.evidence);chatHistory.push({role:'user',content:text},{role:'assistant',content:result.answer.slice(0,6000)});
  }catch(error){pending.textContent=error.message;pending.classList.add('chat-error')}
  finally{chatBusy=false;document.getElementById('chat-send').disabled=false;input.focus()}
 };

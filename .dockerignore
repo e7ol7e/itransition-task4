@@ -6,6 +6,8 @@
 !data_tools.py
 !assistant.py
 !app.py
+!audit.py
+!evaluate_assistant.py
 !data/
 !data/STORE*/
 !data/STORE*/users.csv
@@ -17,4 +19,5 @@ dashboard/*
 !dashboard/dist/
 !dashboard/dist/index.html
 !dashboard/dist/app.js
+!dashboard/dist/audit.js
 !dashboard/dist/app.css

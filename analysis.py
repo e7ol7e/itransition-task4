@@ -7,6 +7,7 @@ All money is Decimal until each order line is rounded to integer USD cents.
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 from decimal import Decimal, ROUND_HALF_UP
 from itertools import combinations
@@ -272,9 +273,13 @@ def build_all():
     dist.mkdir(parents=True, exist_ok=True)
     template = (TASK_DIR / "dashboard" / "index.template.html").read_text(encoding="utf-8")
     embedded = json.dumps(payload, ensure_ascii=False).replace("<", "\\u003c")
-    (dist / "index.html").write_text(template.replace("__DASHBOARD_DATA__", embedded), encoding="utf-8")
-    for asset in ["app.js", "app.css"]:
-        (dist / asset).write_text((TASK_DIR / "dashboard" / asset).read_text(encoding="utf-8"), encoding="utf-8")
+    html = template.replace("__DASHBOARD_DATA__", embedded)
+    for asset in ["app.js", "app.css", "audit.js"]:
+        contents=(TASK_DIR / 'dashboard' / asset).read_text(encoding='utf-8')
+        (dist / asset).write_text(contents, encoding="utf-8")
+        digest=hashlib.sha256(contents.encode('utf-8')).hexdigest()[:12]
+        html=html.replace(f'/static/{asset}',f'/static/{asset}?v={digest}')
+    (dist / "index.html").write_text(html,encoding='utf-8')
     print(pd.DataFrame([{key: result["summary"][key] for key in
                         ["store", "orders", "unique_users", "unique_author_sets", "revenue_cents"]}
                        for result in results]).to_string(index=False))

@@ -1,0 +1,15 @@
+{
+  "passed": 10,
+  "checks": [
+    "Identity count drilldown",
+    "Three-record graph, edge selection and matching/changed fields",
+    "Evidence download",
+    "Daily source ledger, FX calculations and pagination",
+    "Best-buyer reconciliation",
+    "Author set audit",
+    "Drilldown respects active filters",
+    "Chat answer opens real calculation with interpreted conditions",
+    "Chat winner opens its exact identity group, not unrelated groups",
+    "Mobile identity graph, dialog and keyboard dismissal"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "offline_regression_tests": {
+    "passed": 29,
+    "total": 29
+  },
+  "browser_checks": {
+    "passed": 10,
+    "total": 10
+  },
+  "live_ai_cases": {
+    "passed": 30,
+    "total": 30,
+    "model": "deepseek-v4-flash",
+    "measured_at": "2026-10-29T08:24:18.408677+00:00"
+  },
+  "additional_check": "Real public chat exclusion query produced 3094 records and opened its exact query inspector."
+}
