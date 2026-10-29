@@ -1,6 +1,6 @@
 {
   "model": "deepseek-v4-flash",
-  "measured_at": "2026-10-29T08:24:18.408677+00:00",
+  "measured_at": "2026-10-29T12:31:15.588194+00:00",
   "passed": 30,
   "total": 30,
   "planned": 30,
@@ -13,7 +13,7 @@
       "tools": [
         "get_user_aliases"
       ],
-      "seconds": 2.26
+      "seconds": 2.28
     },
     {
       "id": "clear-filters",
@@ -22,7 +22,7 @@
       "tools": [
         "update_dashboard"
       ],
-      "seconds": 2.68
+      "seconds": 2.98
     },
     {
       "id": "contains",
@@ -31,7 +31,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.57
+      "seconds": 2.93
     },
     {
       "id": "filtered-orders",
@@ -49,7 +49,7 @@
       "tools": [
         "update_dashboard"
       ],
-      "seconds": 2.29
+      "seconds": 2.36
     },
     {
       "id": "negative",
@@ -58,7 +58,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.29
+      "seconds": 2.35
     },
     {
       "id": "not_contains",
@@ -67,7 +67,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.78
+      "seconds": 2.38
     },
     {
       "id": "prefix",
@@ -76,7 +76,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.43
+      "seconds": 2.64
     },
     {
       "id": "show_prefix",
@@ -85,7 +85,7 @@
       "tools": [
         "update_dashboard"
       ],
-      "seconds": 2.64
+      "seconds": 2.24
     },
     {
       "id": "store1-copies",
@@ -94,7 +94,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.6
+      "seconds": 2.56
     },
     {
       "id": "store1-orders",
@@ -103,7 +103,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.24
+      "seconds": 2.72
     },
     {
       "id": "store1-people",
@@ -112,7 +112,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.83
+      "seconds": 3.38
     },
     {
       "id": "store1-records",
@@ -121,7 +121,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.25
+      "seconds": 2.49
     },
     {
       "id": "store2-copies",
@@ -130,7 +130,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.6
+      "seconds": 2.46
     },
     {
       "id": "store2-orders",
@@ -139,7 +139,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.02
+      "seconds": 2.48
     },
     {
       "id": "store2-people",
@@ -148,7 +148,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.11
+      "seconds": 2.24
     },
     {
       "id": "store2-records",
@@ -157,7 +157,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.54
+      "seconds": 2.47
     },
     {
       "id": "store3-copies",
@@ -166,7 +166,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.41
+      "seconds": 2.17
     },
     {
       "id": "store3-orders",
@@ -175,7 +175,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.11
+      "seconds": 2.55
     },
     {
       "id": "store3-people",
@@ -184,7 +184,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.34
+      "seconds": 3.02
     },
     {
       "id": "store3-records",
@@ -193,7 +193,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 1.78
+      "seconds": 2.8
     },
     {
       "id": "store4-copies",
@@ -202,7 +202,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.31
+      "seconds": 2.71
     },
     {
       "id": "store4-orders",
@@ -211,7 +211,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.13
+      "seconds": 2.45
     },
     {
       "id": "store4-people",
@@ -220,7 +220,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 1.91
+      "seconds": 2.47
     },
     {
       "id": "store4-records",
@@ -229,7 +229,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 1.92
+      "seconds": 2.85
     },
     {
       "id": "store5-copies",
@@ -238,7 +238,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.41
+      "seconds": 2.27
     },
     {
       "id": "store5-orders",
@@ -247,7 +247,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.42
+      "seconds": 2.25
     },
     {
       "id": "store5-people",
@@ -256,7 +256,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.43
+      "seconds": 2.35
     },
     {
       "id": "store5-records",
@@ -265,7 +265,7 @@
       "tools": [
         "query_data"
       ],
-      "seconds": 2.52
+      "seconds": 2.6
     },
     {
       "id": "whole-store-despite-filter",
@@ -274,7 +274,7 @@
       "tools": [
         "get_store_summary"
       ],
-      "seconds": 2.35
+      "seconds": 2.42
     }
   ]
 }

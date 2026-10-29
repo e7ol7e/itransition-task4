@@ -1,7 +1,10 @@
 # Task 4 · Bookstore analysis
 
-All three parts are implemented: five-store analysis, tool-backed DeepSeek questions,
-and AI dashboard controls. Live dashboard: https://task4.evgeniy.win
+Sales analysis for five stores, with a dashboard and DeepSeek tool calls for
+questions and filters.
+
+- Dashboard: https://task4.evgeniy.win
+- Source: https://github.com/e7ol7e/itransition-task4
 
 The implementation is in `analysis.py`, `data_tools.py`, `assistant.py`, and `app.py`.
 Personal learning notebooks and their row-level outputs stay local and are excluded
@@ -27,18 +30,17 @@ For local chat, copy `.env.example` to `task4.env`, supply your own key, and run
 uv run --env-file task4.env uvicorn app:app --host 127.0.0.1 --port 8764
 ```
 
-The key is only read server-side. Do not commit `task4.env`. The deployed key is
-stored in `/root/itransition/task4/task4.env` with mode 600.
+The key is read server-side from the environment. Keep `task4.env` outside source
+control and restrict its file permissions.
 
 The input archive must be extracted into `data/STORE1/` through `data/STORE5/`.
 Each directory contains `users.csv`, `orders.parquet`, and `books.yaml`.
 Input data and detailed local outputs are excluded from Git; the generated
 dashboard contains the aggregate results necessary to view the submission.
 
-`analysis.py` is the reusable implementation. `update_notebook.py` refreshes the
-explained steps from its function definitions while preserving the earlier
-lessons. `run_notebook.py` executes every cell with the project's Jupyter kernel
-and saves the outputs, without requiring an additional notebook runner.
+`analysis.py` contains the cleaning and aggregation code. The optional notebook
+helpers, `update_notebook.py` and `run_notebook.py`, support local study; the server
+does not use notebooks.
 
 ## Calculation decisions
 
@@ -69,8 +71,8 @@ and saves the outputs, without requiring an additional notebook runner.
 
 `output/summary.json` contains all calculated values. `output/STORE*/` contains
 cleaned tables, identity mappings, matching evidence, rejected orders and daily
-totals. PNG charts are in `output/`. These detailed files stay local; the web
-container only includes the generated aggregate dashboard, not the contact directory.
+totals. These detailed exports stay local. The web container includes the input
+files for server-side queries and serves only the built dashboard as static files.
 
 ## VPS deployment
 
@@ -103,8 +105,7 @@ To inspect it before configuring Cloudflare, forward the local port:
 ssh -L 8765:127.0.0.1:5002 vps
 ```
 
-Then open http://127.0.0.1:8765. The tunnel service URL to publish is
-**http://127.0.0.1:5002**. URL publication is left to the owner.
+Then open http://127.0.0.1:8765. The Cloudflare Tunnel service URL is **http://127.0.0.1:5002**.
 
 ## AI questions and dashboard controls
 
@@ -115,7 +116,8 @@ The model cannot execute Python, SQL, filesystem operations, or arbitrary URLs.
 
 For factual questions the model selects a plan; the displayed answer is rendered
 from successful tool output. Free-form final model prose is not used for numerical
-answers, preventing it from replacing computed figures with invented ones. Open
+answers, so displayed figures come from the selected computation. The model still chooses
+the query; its filters and grouping are visible in the evidence inspector. Open
 "Verified data" below an answer to inspect the exact arguments and results.
 
 Supported operations include whole-store metrics, filtered aggregates, rankings,
@@ -191,7 +193,7 @@ mkdir -p task4/evaluation
 docker compose exec -T task4 cat /tmp/assistant-evaluation.json > task4/evaluation/assistant-results.json
 ```
 
-The default report contains case labels, pass/fail, tool names and timings; it omits prompts and data-specific results. See `evaluation/assistant-results.json` for the measured run. For private debugging, add `--private-details` and save the output outside public source (for example under ignored `submission/`). Never publish credentials. Detailed diagnostics are excluded from the published history.
+The default report contains case labels, pass/fail, tool names and timings; it omits prompts and data-specific results. See `evaluation/assistant-results.json` for the measured run. For private debugging, add `--private-details` and save the output outside public source (for example under ignored `submission/`). Never publish credentials. Detailed diagnostics belong in ignored local files.
 
 The ordinary offline suite also tests transitive identity chains, missing evidence, scoped totals, pagination, negative filters, rejected final-result references, and discarding intermediate dashboard actions:
 
