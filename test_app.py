@@ -122,7 +122,7 @@ class HttpTests(unittest.TestCase):
 
     def test_dashboard_and_health(self):
         self.assertEqual(self.client.get('/healthz').text,'ok\n')
-        self.assertIn('Your data analyst',self.client.get('/').text)
+        self.assertIn('id="chat-form"',self.client.get('/').text)
         self.assertEqual(self.client.get('/static/app.js').status_code,200)
         response=self.client.post('/api/dashboard',json={"store":"STORE5","view":"books"})
         self.assertEqual(response.status_code,200)
